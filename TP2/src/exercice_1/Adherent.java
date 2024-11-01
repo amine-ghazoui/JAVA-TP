@@ -8,6 +8,7 @@ public class Adherent extends Personne{
         this.numAdherent = numAdherent;
     }
 
+    // Méthode pour afficher les informations de l'adhérent
     @Override
     public void afficher(){
         super.afficher();
@@ -15,10 +16,12 @@ public class Adherent extends Personne{
     }
 
     public int getNumAdherent() {
+
         return numAdherent;
     }
 
     public void setNumAdherent(int numAdherent) {
+
         this.numAdherent = numAdherent;
     }
 }

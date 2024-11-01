@@ -28,38 +28,47 @@ public class Personne {
     }
 
     public void setNom(String nom) {
+
         this.nom = nom;
     }
 
     public String getPrenom() {
+
         return prenom;
     }
 
     public void setPrenom(String prenom) {
+
         this.prenom = prenom;
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
     public String getTele() {
+
         return tele;
     }
 
     public void setTele(String tele) {
+
         this.tele = tele;
     }
 
     public int getAge() {
+
         return age;
     }
 
     public void setAge(int age) {
+
         this.age = age;
     }
 

@@ -9,16 +9,29 @@ public class Manager extends Employe{
     }
 
     @Override
-    public double calculerSalire(){
+    public double calculerSalaire(){
         salaire += salaire + salaire * 0.2;
         return salaire;
     }
 
     public String getServive() {
+
         return servive;
     }
 
     public void setServive(String servive) {
+
         this.servive = servive;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager:\n" +
+                "Nom: " + getNom() + "\n" +
+                "Prénom: " + getPrenom() + "\n" +
+                "Téléphone: " + getTele() + "\n" +  // Assurez-vous que getTele() est défini
+                "Salaire: " + getSalaire() + "\n" +
+                "Taille de l'équipe: " + servive + "\n" +
+                "********************************";
     }
 }

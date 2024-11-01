@@ -15,10 +15,12 @@ public class Auteur extends Personne{
     }
 
     public int getNumAuteur() {
+
         return numAuteur;
     }
 
     public void setNumAuteur(int numAuteur) {
+
         this.numAuteur = numAuteur;
     }
 }
