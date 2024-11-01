@@ -53,6 +53,6 @@ public class Commande {
         return "Référence: " + reference + "\n" +
                 "Date: " + date + "\n" +
                 "État: " + etat + "\n" +
-                "Client: " + client.toString();
+                "Client: " + client.toString()+"\n";
     }
 }

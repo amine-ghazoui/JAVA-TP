@@ -74,7 +74,7 @@ public class Categorer {
 
     @Override
     public String toString() {
-        return  "Nom: " + nom + "\n" +
+        return  "\n : " + nom + "\n" +
                 "Description: " + description + "\n" +
                 "Ordinateurs: " + ordinateur.toString() + "\n";
     }

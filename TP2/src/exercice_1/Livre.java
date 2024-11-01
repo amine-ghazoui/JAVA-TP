@@ -14,7 +14,8 @@ public class Livre {
     public void afficher(){
         System.out.println("ISBN : "+ISBN);
         System.out.println("titre : "+titre);
-        System.out.println("information auteur : "+auteur);
+        System.out.println("information auteur : ");
+        auteur.afficher();
     }
 
 }

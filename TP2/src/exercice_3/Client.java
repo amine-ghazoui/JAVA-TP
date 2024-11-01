@@ -99,7 +99,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return  "Nom : " + nom + "\n" +
+        return  "\n Nom : " + nom + "\n" +
                 "Prénom : " + prenom + "\n" +
                 "Email : " + email + "\n" +
                 "Adresse : " + adresse + "\n" +

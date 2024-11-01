@@ -62,7 +62,7 @@ public class Ordinateur {
 
     @Override
     public String toString() {
-        return  "Nom: " + nom + "\n" +
+        return  "\n Nom: " + nom + "\n" +
                 "Marque: " + marque + "\n" +
                 "Prix: " + prix + "DH" + "\n" +
                 "Description: " + description + "\n" +
