@@ -1,4 +1,4 @@
-package exercie_1_collection;
+package collection_.exercie_1_collection;
 
 import java.util.ArrayList;
 import java.util.Scanner;
