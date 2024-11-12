@@ -5,4 +5,12 @@
 
 ## Exercice 1 : (Collection)
 
+1. Objective:
+
+  L'objectif de cet exercice est de créer une application Java pour manipuler une liste d'objets Produit, en permettant l'ajout, la suppression, la modification, la recherche et l'affichage des produits dans une ArrayList.
+
+2. Description :
+
+
+
 
