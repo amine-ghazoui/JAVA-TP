@@ -10,6 +10,7 @@ module com.example.tp_javafx {
     requires com.almasb.fxgl.all;
     requires java.sql;
 
+    opens com.example.entite to javafx.base;
     opens com.example.tp_javafx to javafx.fxml;
     exports com.example.tp_javafx;
 }

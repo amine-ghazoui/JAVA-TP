@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_javafx.ProfesseuerController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="37.0" prefWidth="669.0" style="-fx-background-color: #FF7F50;" />
+      <TableView fx:id="table" layoutX="11.0" layoutY="57.0" onMouseClicked="#rowClicked" prefHeight="200.0" prefWidth="647.0">
+        <columns>
+          <TableColumn fx:id="idProf" prefWidth="51.33334219455719" text="ID" />
+          <TableColumn fx:id="nomProf" prefWidth="66.00000381469727" text="Nom" />
+            <TableColumn fx:id="prenomProf" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="cinProf" prefWidth="75.0" text="CIN" />
+            <TableColumn fx:id="adresseProf" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="teleProf" prefWidth="75.0" text="Tele" />
+            <TableColumn fx:id="emailProf" prefWidth="75.0" text="E-mail" />
+            <TableColumn fx:id="DateProf" prefWidth="75.0" text="DateR" />
+            <TableColumn fx:id="ID_departProf" prefWidth="75.0" text="ID_depart" />
+        </columns>
+      </TableView>
+      <TextField fx:id="IDInput" layoutX="14.0" layoutY="272.0" promptText="ID" />
+      <TextField fx:id="NomInput" layoutX="177.0" layoutY="272.0" promptText="Nom" />
+      <TextField fx:id="PrenomInput" layoutX="343.0" layoutY="272.0" promptText="Prenom" />
+      <TextField fx:id="AdresseInput" layoutX="14.0" layoutY="315.0" promptText="Adresse" />
+      <TextField fx:id="TelephoneInput" layoutX="177.0" layoutY="315.0" promptText="Telephone" />
+      <TextField fx:id="EmailInput" layoutX="343.0" layoutY="315.0" promptText="E-mail" />
+      <TextField fx:id="cinInput" layoutX="505.0" layoutY="272.0" promptText="CIN" />
+      <TextField fx:id="DateInput" layoutX="505.0" layoutY="315.0" promptText="Dat de recrutement" />
+      <TextField fx:id="IDDepart_ProfInput" layoutX="14.0" layoutY="354.0" promptText="ID Departement" />
+      <Button layoutX="515.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="25.0" prefWidth="102.0" text="Supprimer" />
+      <Button layoutX="252.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#ajouter" prefHeight="25.0" prefWidth="102.0" text="Ajouter" />
+      <Button layoutX="381.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#modifier" prefHeight="25.0" prefWidth="102.0" text="Modifier" />
+   </children>
+</AnchorPane>

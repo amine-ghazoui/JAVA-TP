@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp_javafx.AffecterProfesseur">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="21.0" prefHeight="365.0" prefWidth="581.0">
+         <children>
+            <ComboBox fx:id="comBox" layoutX="174.0" layoutY="72.0" prefHeight="52.0" prefWidth="204.0" />
+            <Button layoutX="254.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#affecterProfDep" prefHeight="35.0" prefWidth="88.0" text="Affecter" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

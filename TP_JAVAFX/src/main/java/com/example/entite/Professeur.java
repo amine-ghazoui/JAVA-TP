@@ -86,6 +86,7 @@ public class Professeur {
     }
 
     public void setDete_recrutement(String dete_recrutement) {
+
         this.dete_recrutement = dete_recrutement;
     }
 
