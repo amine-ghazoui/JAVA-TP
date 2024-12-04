@@ -11,19 +11,25 @@ public class test {
         Departement dep3 = new Departement( 3, "physique ");
         Departement dep4 = new Departement( 4, "chimie");
 
-        
+
+        Professeur prof1 = new Professeur( 1, "bosfiha", "Lahcen", "U5677", "ERRACHIDIA", "0662159576", "elbermi@gmail.com","12/01/2009", 1 );
+        Professeur prof2 = new Professeur( 2, "Hajar", "Moha", "U1777", "Tinghir", "0662769576", "hajar@gmail.com","17/09/2014", 2 );
+        Professeur prof3 = new Professeur( 3, "kamil", "Fatima", "PA1777", "Mohammedia", "0662909576", "amounasF@gmail.com","19/11/2017", 1 );
+        Professeur prof4 = new Professeur( 4, "Daya", "Abdelmajid", "Z1777", "ASAFI", "0662458476", "dayaAb@gmail.com","10/05/2020", 3 );
+
 
         DepartementDao departement = new DepartementDao();
         ProfesseurDao professeur = new ProfesseurDao();
 
-//        departement.add(dep1);
-//        departement.add(dep2);
-//        departement.add(dep3);
+        departement.add(dep1);
+        departement.add(dep2);
+        departement.add(dep3);
+        departement.add(dep4);
 
-//        professeur.add(prof1);
-//        professeur.add(prof2);
-//        professeur.add(prof3);
-//        professeur.add(prof4);
+        professeur.add(prof1);
+        professeur.add(prof2);
+        professeur.add(prof3);
+        professeur.add(prof4);
 
         // professeur.update(prof4);
         //professeur.delete(2);
@@ -37,7 +43,7 @@ public class test {
 //        departement.add(dep4);
 
 
-        departement.update(dep3);
+        //departement.update(dep3);
 
 
 

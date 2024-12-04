@@ -10,7 +10,7 @@
       <AnchorPane layoutX="14.0" layoutY="21.0" prefHeight="365.0" prefWidth="581.0">
          <children>
             <ComboBox fx:id="comBox" layoutX="174.0" layoutY="72.0" prefHeight="52.0" prefWidth="204.0" />
-            <Button layoutX="254.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#affecterProfDep" prefHeight="35.0" prefWidth="88.0" text="Affecter" />
+            <Button layoutX="232.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#affecterProfDep" prefHeight="35.0" prefWidth="88.0" text="Affecter" />
          </children>
       </AnchorPane>
    </children>
