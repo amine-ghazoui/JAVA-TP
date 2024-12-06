@@ -17,7 +17,7 @@ public class DossierContact {
 
     //Charge les contacts depuis les fichiers du dossier 'contacts'.
     private void chargerContacts() {
-        File dossier = new File("src\\exercice_2\\contacts");
+        File dossier = new File("contacts");
         if (!dossier.exists()) {
             dossier.mkdir(); // Créer le dossier s'il n'existe pas
         }
@@ -31,16 +31,9 @@ public class DossierContact {
                     String numero = reader.readLine();
                     noms.add(fichier.getName());
                     numeros.add(numero);
-                } catch (IOException e) {
+                }
+                catch (IOException e) {
                     System.out.println("Erreur lors du chargement du fichier : " + fichier.getName());
-                } finally {
-                    if (reader != null) {
-                        try {
-                            reader.close();
-                        } catch (IOException e) {
-                            System.out.println("Erreur lors de la fermeture du fichier : " + fichier.getName());
-                        }
-                    }
                 }
             }
         }
@@ -48,7 +41,7 @@ public class DossierContact {
 
     //Sauvegarde tous les contacts dans des fichiers individuels.
     private void sauvegarderContacts() {
-        File dossier = new File("src\\exercice_2\\contacts");
+        File dossier = new File("contacts");
         if (!dossier.exists()) {
             dossier.mkdir();
         }
@@ -59,16 +52,9 @@ public class DossierContact {
             try {
                 writer = new BufferedWriter(new FileWriter(fichier));
                 writer.write(numeros.get(i));
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 System.out.println("Erreur lors de l'écriture du fichier : " + fichier.getName());
-            } finally {
-                if (writer != null) {
-                    try {
-                        writer.close();
-                    } catch (IOException e) {
-                        System.out.println("Erreur lors de la fermeture du fichier : " + fichier.getName());
-                    }
-                }
             }
         }
     }
@@ -93,7 +79,7 @@ public class DossierContact {
         if (index != -1) {
             noms.remove(index);
             numeros.remove(index);
-            File fichier = new File("src\\exercice_2\\contacts", nom);
+            File fichier = new File("contacts", nom);
             if (fichier.exists()) {
                 fichier.delete();
             }
