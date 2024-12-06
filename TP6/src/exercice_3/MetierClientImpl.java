@@ -11,7 +11,7 @@ public class MetierClientImpl implements IMetier<Client> {
 
 
     public MetierClientImpl() {
-        this.fichierClient = "D:\\POO_SDIA\\JAVA-TP\\TP6\\src\\exercice_3\\clients.dat";
+        this.fichierClient = "D:\\POO_SDIA\\JAVA-TP\\TP6\\src\\exercice_3\\clients.txt";
         this.listClients = new ArrayList<>();
     }
 

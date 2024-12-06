@@ -11,7 +11,7 @@ public class MetierProduitImpl implements IMetier<Produit> {
 
 
     public MetierProduitImpl() {
-        this.fichierProduit = "D:\\POO_SDIA\\JAVA-TP\\TP6\\src\\exercice_3\\produits.dat";
+        this.fichierProduit = "D:\\POO_SDIA\\JAVA-TP\\TP6\\src\\exercice_3\\produits.txt";
         this.listProduits = new ArrayList<>();
     }
 
