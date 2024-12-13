@@ -1,137 +1,455 @@
-# Unified Java Exercises
+# INTRODUCTION:
 
-This project is a collection of various Java exercises unified under a single entry point. It consists of a main Main class that orchestrates the execution of exercises from different packages.
+This project is a collection of various Java exercises unified under a single entry point. It consists of a main class that orchestrates the execution of exercises from different packages.
 
-## Exercice 1 :
+## Exercise 1:  
 
-# Simulateur de Commande `ls` en Java
+## Simulate `ls` Command in Java
 
-Ce projet implémente une application Java qui simule la commande `ls` utilisée dans les systèmes Unix pour lister les fichiers et répertoires d'un chemin donné.
+This project implements a Java application that simulates the `ls` command used in Unix systems to list files and directories of a given path.
 
-## Fonctionnalités Principales
+## Main Features
 
-1. **Demander un chemin** :  
-   - L'utilisateur saisit le chemin d'un répertoire via la console.
+1. **Request a Path**:  
+   - The user enters the path of a directory via the console.
 
-2. **Lister les fichiers et répertoires** :  
-   - Parcours des fichiers et répertoires dans le chemin spécifié, en affichant :
-     - Le chemin complet.
-     - Le type (`<DIR>` pour les répertoires, `<FILE>` pour les fichiers).
-     - Les permissions (`r`, `w`, et `h` pour lecture, écriture, et caché).
+2. **List Files and Directories**:  
+   - It traverses the files and directories in the given path, displaying:
+     - The full path.
+     - The type (`<DIR>` for directories, `<FILE>` for files).
+     - Permissions (`r`, `w`, and `h` for read, write, and hidden).
 
-3. **Exploration récursive** :  
-   - Si un répertoire est rencontré, son contenu est exploré récursivement.
+3. **Recursive Exploration**:  
+   - If a directory is encountered, its contents are explored recursively.
 
-## Structure du Code
+## Code Structure
 
-### 1. Classe **`LsSimulator`**
-- **Méthode `main`** :
-  - Gère la saisie utilisateur.
-  - Vérifie si le chemin est valide et s'il s'agit d'un répertoire.
-  - Appelle la méthode de listage.
+### 1. **`LsSimulator` Class**
+- **`main` Method**:  
+  - Manages user input.
+  - Checks if the path is valid and if it's a directory.
+  - Calls the listing method.
 
-- **Méthode `listFilesAndDirectories`** :
-  - Liste les fichiers et répertoires du chemin donné.
-  - Affiche les informations détaillées pour chaque élément.
-  - Explore les sous-répertoires récursivement.
+- **`listFilesAndDirectories` Method**:  
+  - Lists the files and directories of the given path.
+  - Displays detailed information for each item.
+  - Recursively explores subdirectories.
 
-- **Méthode `getPermissions`** :
-  - Retourne une chaîne indiquant les permissions du fichier ou répertoire :
-    - **`r`** : Lecture autorisée.
-    - **`w`** : Écriture autorisée.
-    - **`h`** : Caché (hidden).
-    - **`-`** : Permission non disponible.
+   ```java
+   // Méthode pour lister les fichiers et répertoires
+    public static void listFilesAndDirectories(File dir) {
+        // Lister les fichiers et répertoires dans le répertoire actuel
+        File[] files = dir.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                // Afficher les informations pour chaque fichier ou répertoire
+                String type = file.isDirectory() ? "<DIR>" : "<FILE>";
+                String permissions = getPermissions(file);
+
+                // Affichage du chemin relatif et des informations
+                System.out.println(file.getPath() + " " + type + " " + permissions);
+
+                // Si c'est un répertoire, appeler la méthode récursive pour explorer ce répertoire
+                if (file.isDirectory()) {
+                    listFilesAndDirectories(file);
+                }
+            }
+        }
+    }
+
+   ```
+
+- **`getPermissions` Method**:  
+  - Returns a string indicating the permissions of a file or directory:
+    - **`r`**: Read allowed.
+    - **`w`**: Write allowed.
+    - **`h`**: Hidden.
+    - **`-`**: No permission.
+    
+    ```java
+     // Méthode pour obtenir les permissions d'un fichier ou répertoire
+    public static String getPermissions(File file) {
+        String permissions = "";
+
+        // Vérifier les permissions
+        permissions += file.canRead() ? "r" : "-";
+        permissions += file.canWrite() ? "w" : "-";
+        permissions += file.isHidden() ? "h" : "-";
+
+        return permissions;
+    }
+    ``
+
+## Exercise 2:  
+
+## Contact Manager in Java
+
+This application implements a contact manager in Java, allowing users to store, modify, search, and delete contacts in individual files within a folder.
+
+## Main Features
+
+1. **Load Contacts**:  
+   - Reads files from the `contacts` folder to retrieve the associated names and phone numbers.
+
+2. **Save Contacts**:  
+   - Each contact is stored in a file named after the contact.  
+   - The phone number is saved inside the file.
+
+3. **Manage Contacts**:  
+   - Add a new contact with duplicate checks.
+   - Delete a contact by its name.
+   - Search for a contact by its name.
+   - Modify the phone number of an existing contact.
+
+4. **Input Validation**:  
+   - Ensures that names and numbers are not empty.
+   - Prevents adding duplicate contacts.
+
+## Code Structure
+
+### 1. **`DossierContact` Class**
+
+#### Attributes:
+- **`names`**: List of contact names.
+- **`numbers`**: List of phone numbers associated with the names.
+
+#### Main Methods:
+- **`loadContacts()`**:  
+  - Loads existing contacts from the `contacts` folder (automatically created if it doesn't exist).
+
+   ```java
+   //Charge les contacts depuis les fichiers du dossier 'contacts'.
+    private void chargerContacts() {
+        File dossier = new File("contacts");
+        if (!dossier.exists()) {
+            dossier.mkdir(); // Créer le dossier s'il n'existe pas
+        }
+
+        File[] fichiers = dossier.listFiles();
+        if (fichiers != null) {
+            for (File fichier : fichiers) {
+                BufferedReader reader = null;
+                try {
+                    reader = new BufferedReader(new FileReader(fichier));
+                    String numero = reader.readLine();
+                    noms.add(fichier.getName());
+                    numeros.add(numero);
+                }
+                catch (IOException e) {
+                    System.out.println("Erreur lors du chargement du fichier : " + fichier.getName());
+                }
+            }
+        }
+    }
+   ```
+
+- **`saveContacts()`**:  
+  - Saves contacts in individual files.
+
+   ```java
+    //Sauvegarde tous les contacts dans des fichiers individuels.
+    private void sauvegarderContacts() {
+        File dossier = new File("contacts");
+        if (!dossier.exists()) {
+            dossier.mkdir();
+        }
+
+        for (int i = 0; i < noms.size(); i++) {
+            File fichier = new File(dossier, noms.get(i));
+            BufferedWriter writer = null;
+            try {
+                writer = new BufferedWriter(new FileWriter(fichier));
+                writer.write(numeros.get(i));
+            }
+            catch (IOException e) {
+                System.out.println("Erreur lors de l'écriture du fichier : " + fichier.getName());
+            }
+        }
+    }
+   ```
+
+- **`addContact(String name, String number)`**:  
+  - Adds a new contact after validation.
+
+   ```java
+   //Ajoute un contact avec validation et vérification de doublons.
+    public void ajouterContact(String nom, String numero) {
+        if (nom == null || nom.isEmpty() || numero == null || numero.isEmpty()) {
+            throw new IllegalArgumentException("Le nom et le numéro ne peuvent pas être vides.");
+        }
+        if (noms.contains(nom)) {
+            System.out.println("Le contact existe déjà.");
+            return;
+        }
+        noms.add(nom);
+        numeros.add(numero);
+        sauvegarderContacts();
+    }
+   ```
+
+- **`deleteContact(String name)`**:  
+  - Deletes a contact, including removing its file.
+
+   ```java
+   //Supprime un contact par son nom.
+    public void supprimerContact(String nom) {
+        int index = noms.indexOf(nom);
+        if (index != -1) {
+            noms.remove(index);
+            numeros.remove(index);
+            File fichier = new File("contacts", nom);
+            if (fichier.exists()) {
+                fichier.delete();
+            }
+        } else {
+            System.out.println("Contact non trouvé.");
+        }
+    }
+   ```
+
+- **`searchContact(String name)`**:  
+  - Returns the phone number of the contact or a message if not found.
+
+   ```java
+   //Recherche un contact par son nom.
+    public String rechercherContact(String nom) {
+        int index = noms.indexOf(nom);
+        return (index != -1) ? numeros.get(index) : "Contact non trouvé.";
+    }
+   ```
+
+- **`changeNumber(String name, String newNumber)`**:  
+  - Updates the phone number of an existing contact.
+
+  ```java
+   //Change le numéro d'un contact existant.
+    public void changerNumero(String nom, String nouveauNumero) {
+        int index = noms.indexOf(nom);
+        if (index != -1) {
+            numeros.set(index, nouveauNumero);
+            sauvegarderContacts();
+        } else {
+            System.out.println("Contact non trouvé.");
+        }
+    }
+  ```
+
+## Exercise 3:  
+
+## Product and Client Management in Java
+
+This project is a Java application that allows managing products and clients via a console interface. The data for products and clients is saved in text files for persistent management.
+
+## Features
+
+### Product Management
+- Display the list of registered products.
+
+```java
+ //Charge tous les produits depuis le fichier et les ajoute à la liste.
+    @Override
+    public List<Produit> getAll() {
+        try {
+            File file = new File(fichierProduit);
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] parti = line.split(";");
+
+                // Vérifie que tous les attributs nécessaires sont présents
+                if (parti.length == 5) {
+                    String nom = parti[0];
+                    String marque = parti[1];
+                    double prix = Double.parseDouble(parti[2]);
+                    String description = parti[3];
+                    int nombreStock = Integer.parseInt(parti[4]);
+
+                    // Crée un produit à partir des données lues
+                    Produit produit = new Produit(nom, marque, prix, description, nombreStock);
+                    listProduits.add(produit);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listProduits;
+    }
+``
+- Search for a product by name.
+
+```java
+/Recherche un produit par son nom.
+    @Override
+    public Produit findByNom(String nom) {
+        Produit produitR = null;
+        for (Produit prod : listProduits) {
+
+            if (prod.getNom().equalsIgnoreCase(nom) && produitR == null) {
+                produitR = new Produit(prod.getNom(), prod.getMarque(), prod.getPrix(), prod.getDescription(), prod.getNombreStock());
+            }
+        }
+        return produitR;
+    }
+```
+- Add a new product.
+
+```java
+ //Ajoute un produit à la liste en mémoire.
+    @Override
+    public Produit add(Produit prod) {
+        listProduits.add(prod);
+        return prod;
+    }
+``
+- Delete an existing product.
+
+```java
+ //Supprime un produit de la liste en mémoire en fonction de son nom.
+    @Override
+    public void delete(String nom) {
+        for (int i = 0; i < listProduits.size(); i++) {
+            Produit produit = listProduits.get(i);
+
+            if (produit.getNom().equalsIgnoreCase(nom)) {
+                listProduits.remove(i);
+                System.out.println("Le produit '" + nom + "' a été supprimé avec succès.");
+                i--;
+            }
+        }
+    }
+```
+- Save products in a text file.
+
+```java
+//Sauvegarde tous les produits de la liste dans le fichier.
+    @Override
+    public void saveAll() {
+        try {
+            BufferedWriter br = new BufferedWriter(new FileWriter(fichierProduit));
+            for (Produit produit : listProduits) {
+                String lineProd = String.format("%s;%s;%.2f;%s;%d", produit.getNom(), produit.getMarque(), produit.getPrix(), produit.getDescription(), produit.getNombreStock());
+                br.write(lineProd);
+                br.newLine();
+            }
+            br.close();
+            System.out.println("Les produits ont été sauvegardés avec succès.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```
+
+### Client Management
+- Display the list of registered clients.
+
+```java
+//Charge tous les clients depuis le fichier et les ajoute à la liste.
+    @Override
+    public List<Client> getAll() {
+        try {
+            File file = new File(fichierClient); // Ouvre le fichier contenant les clients
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String line;
+            while ((line = br.readLine()) != null) { // Parcourt chaque ligne du fichier
+                String[] parti = line.split(";"); // Sépare les attributs du client
+
+                // Vérifie que tous les attributs nécessaires sont présents
+                if (parti.length == 5) {
+                    String nom = parti[0];
+                    String prenom = parti[1];
+                    String adresse = parti[2];
+                    String tele = parti[3];
+                    String email = parti[4];
 
 
-## Exercice 2 :
+                    Client client = new Client(nom, prenom, adresse, tele, email);
+                    listClients.add(client);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listClients;
+    }
+``
+- Search for a client by name.
 
-# Gestionnaire de Contacts en Java
+```java
+//Recherche un client par son nom.
+    @Override
+    public Client findByNom(String nom) {
+        Client clientR = null;
+        for (Client client : listClients) {
+            // Si un client avec le nom correspondant est trouvé, le retourner
+            if (client.getNom().equalsIgnoreCase(nom) && clientR == null) {
+                clientR = new Client(client.getNom(), client.getPrenom(), client.getAdresse(), client.getTele(), client.getEmail());
+            }
+        }
+        return clientR;
+    }
+```
+- Add a new client.
 
-Cette application implémente un gestionnaire de contacts en Java, permettant de stocker, modifier, rechercher et supprimer des contacts dans des fichiers individuels au sein d'un dossier.
+```java
+// Ajoute un client à la liste en mémoire.
+    @Override
+    public Client add(Client clt) {
+        listClients.add(clt); // Ajout du client à la liste
+        return clt; // Retourne le client ajouté
+    }
+```
+- Delete an existing client.
 
-## Fonctionnalités Principales
+```java
+ //Supprime un client de la liste en mémoire en fonction de son nom.
+    @Override
+    public void delete(String nom) {
+        for (int i = 0; i < listClients.size(); i++) {
+            Client client = listClients.get(i);
+            // Si un client avec le nom correspondant est trouvé, le supprimer
+            if (client.getNom().equalsIgnoreCase(nom)) {
+                listClients.remove(i); // Suppression du client
+                System.out.println("Le client '" + nom + "' a été supprimé avec succès.");
+                i--;
+            }
+        }
+    }
+```
+- Save clients in a text file.
 
-1. **Chargement des contacts** :  
-   - Lit les fichiers du dossier `contacts` pour récupérer les noms et numéros associés.
+```java
+ //Sauvegarde tous les clients de la liste dans le fichier.
+    @Override
+    public void saveAll() {
+        try {
+            BufferedWriter br = new BufferedWriter(new FileWriter(fichierClient));
+            for (Client client : listClients) {
+                // Format des données du client à écrire dans le fichier
+                String lineClient = String.format("%s;%s;%s;%s;%s", client.getNom(), client.getPrenom(), client.getAdresse(), client.getTele(), client.getEmail());
+                br.write(lineClient);
+                br.newLine(); // Passage à la ligne suivante
+            }
+            br.close();
+            System.out.println("Les clients ont été sauvegardés avec succès.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```
 
-2. **Sauvegarde des contacts** :  
-   - Chaque contact est stocké dans un fichier portant le nom du contact.  
-   - Le numéro de téléphone est sauvegardé à l'intérieur du fichier.
+## Code Structure
 
-3. **Gestion des contacts** :  
-   - Ajouter un nouveau contact avec vérification des doublons.
-   - Supprimer un contact par son nom.
-   - Rechercher un contact par son nom.
-   - Modifier le numéro d'un contact existant.
+### Main Classes
+- **`Product`**: Represents products with attributes like name, brand, price, description, and stock.
+- **`Client`**: Represents clients with information like name, surname, address, phone number, and email.
+- **`ProductBusinessImpl`**: Implements CRUD operations for managing products.
+- **`ClientBusinessImpl`**: Implements CRUD operations for managing clients.
+- **`IBusiness`**: A generic interface defining basic methods for entity management.
 
-4. **Validation des entrées** :  
-   - Assure que les noms et numéros ne sont pas vides.
-   - Empêche l'ajout de contacts déjà existants.
-
-## Structure du Code
-
-### 1. Classe **`DossierContact`**
-
-#### Attributs :
-- **`noms`** : Liste des noms des contacts.
-- **`numeros`** : Liste des numéros associés aux noms.
-
-#### Méthodes Principales :
-- **`chargerContacts()`** :  
-  - Charge les contacts existants depuis le dossier `contacts` (créé automatiquement s'il n'existe pas).  
-
-- **`sauvegarderContacts()`** :  
-  - Sauvegarde les contacts dans des fichiers individuels.
-
-- **`ajouterContact(String nom, String numero)`** :  
-  - Ajoute un nouveau contact après validation.
-
-- **`supprimerContact(String nom)`** :  
-  - Supprime un contact en supprimant également son fichier.
-
-- **`rechercherContact(String nom)`** :  
-  - Retourne le numéro du contact correspondant ou un message si le contact n'est pas trouvé.
-
-- **`changerNumero(String nom, String nouveauNumero)`** :  
-  - Met à jour le numéro de téléphone d'un contact existant.
-
-
-## Exercice 3 :
-
-# Gestion de Produits et Clients en Java
-
-Ce projet est une application Java qui permet de gérer les produits et les clients via une interface console. Les données des produits et des clients sont sauvegardées dans des fichiers texte pour une gestion persistante.
-
-## Fonctionnalités
-
-### Gestion des Produits
-- Afficher la liste des produits enregistrés.
-- Rechercher un produit par son nom.
-- Ajouter un nouveau produit.
-- Supprimer un produit existant.
-- Sauvegarder les produits dans un fichier texte.
-
-### Gestion des Clients
-- Afficher la liste des clients enregistrés.
-- Rechercher un client par son nom.
-- Ajouter un nouveau client.
-- Supprimer un client existant.
-- Sauvegarder les clients dans un fichier texte.
-
-## Structure du Code
-
-### Principales Classes
-- **`Produit`** : Représente les produits avec des attributs comme le nom, la marque, le prix, la description et le stock.
-- **`Client`** : Représente les clients avec des informations comme le nom, le prénom, l'adresse, le téléphone et l'email.
-- **`MetierProduitImpl`** : Implémente les opérations CRUD pour la gestion des produits.
-- **`MetierClientImpl`** : Implémente les opérations CRUD pour la gestion des clients.
-- **`IMetier`** : Interface générique définissant les méthodes de base pour la gestion des entités.
-
-### Fichiers
-- Les produits sont enregistrés dans `produits.txt`.
-- Les clients sont enregistrés dans `clients.txt`.
-
-
-
-
+### Files
+- Products are saved in `products.txt`.
+- Clients are saved in `clients.txt`.
 
